@@ -3,8 +3,8 @@ const save = (key, value) => {
     const serializedData = JSON.stringify(value);
     localStorage.setItem(key, serializedData);
   } catch (err) {
-    console.log(error.name);
-    console.log(error.message);
+    console.log(err.name);
+    console.log(err.message);
   }
 };
 const load = key => {
@@ -12,8 +12,18 @@ const load = key => {
     const serializedData = localStorage.getItem(key);
     return serializedData === null ? undefined : JSON.parse(serializedData);
   } catch (err) {
-    console.log(error.name);
-    console.log(error.message);
+    console.log(err.name);
+    console.log(err.message);
   }
 };
-export { save, load };
+const remove = key => {
+  try {
+    const serializedData = localStorage.removeItem(key);
+    return serializedData === null ? undefined : undefined;
+  } catch (err) {
+    console.log(err.name);
+    console.log(err.message);
+  }
+};
+
+export { save, load, remove };

@@ -1,28 +1,35 @@
 import throttle from 'lodash.throttle';
-import { save, load } from './localstorage';
+import { save, load, remove } from './localstorage';
 const formEl = document.querySelector('.feedback-form');
 const submit = formEl.querySelector('button');
 const inputEl = formEl.querySelector('input');
 const textareaEl = formEl.querySelector('textarea');
-const LocalObject = {};
+const LOCAL_PLACE = 'feedback-form-state';
+const LocalObject = load(LOCAL_PLACE) || { message: '', email: '' };
+console.log(LocalObject);
 updateText();
 
-formEl.addEventListener('input', throttle(dataToLocal, 1000));
-submit.addEventListener('click', submitData);
+formEl.addEventListener('input', throttle(dataToLocal, 500));
+formEl.addEventListener('submit', submitData);
 
 function dataToLocal(event) {
   const { name, value } = event.target;
   LocalObject[name] = value;
-  console.log('🚀 ~ LocalObject', LocalObject);
-  localStorage.setItem('feedback-form-state', JSON.stringify(LocalObject));
+  save(LOCAL_PLACE, LocalObject);
 }
 function submitData(event) {
-  console.log(event.target);
+  event.preventDefault();
+  console.log(load(LOCAL_PLACE));
+  if (LocalObject.email === '' || LocalObject.message === '') {
+    alert('заповніть пусті строки');
+  } else {
+    remove(LOCAL_PLACE);
+    event.currentTarget.reset();
+    console.log(LocalObject);
+  }
 }
 
 function updateText() {
-  const load = localStorage.getItem('feedback-form-state');
-  const parceLoad = JSON.parse(load) || '';
-  inputEl.value = parceLoad.email;
-  textareaEl.value = parceLoad.message;
+  inputEl.value = LocalObject.email;
+  textareaEl.value = LocalObject.message;
 }
