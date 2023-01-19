@@ -15,6 +15,7 @@ function dataToLocal(event) {
   LocalObject[name] = value;
   save(LOCAL_PLACE, LocalObject);
 }
+
 function submitData(event) {
   event.preventDefault();
   if (inputEl.value === '' || textareaEl.value === '') {
