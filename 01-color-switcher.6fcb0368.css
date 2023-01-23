@@ -1,2 +1,0 @@
-button[data-start],button[data-stop]{cursor:pointer;background-color:#6fb1db;border:1px solid #1126b2;border-radius:10%;padding:10px;font-size:24px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 1px #100909}button[data-stop]{left:60%}button:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;color:#7fffd4;background-color:#969a9c;border-color:#505265;box-shadow:0 0 0 1px #9d5f5f}
-/*# sourceMappingURL=01-color-switcher.6fcb0368.css.map */
