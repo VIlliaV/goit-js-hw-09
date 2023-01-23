@@ -56,6 +56,7 @@ function startTimer() {
     if (timeToEnd <= 0) {
       timeToEnd = 0;
       clearInterval(timerID);
+      Notiflix.Notify.info('THE END)))');
     }
     changeText();
   }, 1000);
