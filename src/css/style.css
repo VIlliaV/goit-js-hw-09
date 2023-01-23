@@ -1,26 +1,56 @@
 button[data-start],
 button[data-stop] {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  display: block;
+  margin: 50px auto;
   padding: 10px 10px;
   font-size: 24px;
-  transform: translate(-50%, -50%);
   background-color: rgb(111, 177, 219);
   border: 1px solid rgb(17, 38, 178);
-  border-radius: 10%;
+  border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 0 0 1px rgb(16, 9, 9);
 }
-button[data-stop] {
-  left: 60%;
-}
+
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   box-shadow: none;
-  color: aquamarine;
+  color: rgb(208, 216, 213);
   background-color: rgb(150, 154, 156);
   border-color: rgb(80, 82, 101);
   box-shadow: 0 0 0 1px rgb(157, 95, 95);
+}
+
+.timer {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Verdana;
+  font-size: 30px;
+  font-weight: bold;
+
+  border: 1px solid rgb(7, 8, 14);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#datetime-picker {
+  display: block;
+  margin: 0px auto;
+
+  text-align: center;
+  font-size: 50px;
+}
+
+.label {
+  font-family: Verdana;
+  font-size: 15px;
 }

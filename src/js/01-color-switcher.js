@@ -7,6 +7,7 @@ buttonStop.disabled = true;
 buttonStart.addEventListener('click', startChangeBackColor);
 
 function startChangeBackColor() {
+  bodyEl.style.backgroundColor = getRandomHexColor();
   buttonStart.disabled = true;
   buttonStop.disabled = false;
   buttonStop.addEventListener('click', stopChangeBackColor);
