@@ -1,4 +1,3 @@
-import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
 const formEl = document.querySelector('.form');
@@ -31,14 +30,14 @@ function submitData(e) {
 
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
-    const objectForPromis = { position, delay };
+    const objectForPromise = { position, delay };
     const shouldResolve = Math.random() > 0.3;
     if (shouldResolve) {
       // Fulfill
-      resolve(objectForPromis);
+      resolve(objectForPromise);
     } else {
       // Reject
-      reject(objectForPromis);
+      reject(objectForPromise);
     }
   });
 }
