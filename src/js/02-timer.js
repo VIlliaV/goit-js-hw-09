@@ -13,7 +13,7 @@ let timeToEnd = 0;
 Notiflix.Notify.init({
   position: 'center-bottom',
   width: '280px',
-  distance: '300px',
+  distance: '250px',
   cssAnimationStyle: 'from-bottom',
   cssAnimationDuration: 1000,
 });

@@ -1,29 +1,44 @@
-const { delay } = require('lodash');
+import 'flatpickr/dist/flatpickr.min.css';
+import Notiflix from 'notiflix';
 
 const formEl = document.querySelector('.form');
 
-formEl.addEventListener('input', inputF);
-formEl.addEventListener('submit', submitF);
-console.log(formEl);
-function inputF(e) {
-  console.log(e.target);
-}
-function submitF(e) {
+formEl.addEventListener('submit', submitData);
+
+function submitData(e) {
   e.preventDefault();
   const {
     elements: { delay, step, amount },
   } = e.target;
-
-    console.log(+delay.value, +step.value);
+  for (let i = 1; i <= +amount.value; i += 1) {
+    const stepForPromise = +delay.value + +step.value * (i - 1);
+    setTimeout(() => {
+      createPromise(i, stepForPromise)
+        .then(({ position, delay }) => {
+          Notiflix.Notify.success(
+            `✅ Fulfilled promise ${position} in ${delay}ms`
+          );
+        })
+        .catch(({ position, delay }) => {
+          Notiflix.Notify.failure(
+            `❌ Rejected promise ${position} in ${delay}ms`
+          );
+        });
+    }, stepForPromise);
+  }
+  e.currentTarget.reset();
 }
 
 function createPromise(position, delay) {
-  const shouldResolve = Math.random() > 0.3;
-  if (shouldResolve) {
-    // Fulfill
-    resolve('success value');
-  } else {
-    // Reject
-    reject('error');
-  }
+  return new Promise((resolve, reject) => {
+    const objectForPromis = { position, delay };
+    const shouldResolve = Math.random() > 0.3;
+    if (shouldResolve) {
+      // Fulfill
+      resolve(objectForPromis);
+    } else {
+      // Reject
+      reject(objectForPromis);
+    }
+  });
 }
